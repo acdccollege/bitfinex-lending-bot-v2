@@ -8,8 +8,8 @@ import CreditsTable from '@/components/CreditsTable'
 import LendingCharts from '@/components/LendingCharts'
 import type { HistoryRecord } from '@/components/HistoryTable'
 
-const STATUS_BASE = 'https://aa85192.github.io/bitfinex-lending-bot-v2/current-status'
-const HISTORY_BASE = 'https://aa85192.github.io/bitfinex-lending-bot-v2/funding-statistics-1'
+const STATUS_BASE = 'https://acdccollege.github.io/bitfinex-lending-bot-v2/current-status'
+const HISTORY_BASE = 'https://acdccollege.github.io/bitfinex-lending-bot-v2/funding-statistics-1'
 
 export interface StatusData {
   wallet: { balance: number }
