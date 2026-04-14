@@ -43,7 +43,7 @@ const ZodConfig = z.object({
 export async function main (): Promise<void> {
   const cfg = ZodConfig.parse({
     currencys: getenv('INPUT_CURRENCYS', '')?.split(','),
-    db: getenv('INPUT_DB', `https://aa85192.github.io/bitfinex-lending-bot-v2/${filename}/db.json`),
+    db: getenv('INPUT_DB', `https://acdccollege.github.io/bitfinex-lending-bot-v2/${filename}/db.json`),
   })
   ymlDump('input', cfg)
   if ((await Bitfinex.v2PlatformStatus()).status === PlatformStatus.MAINTENANCE) {
