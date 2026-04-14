@@ -111,21 +111,26 @@ export async function main (): Promise<void> {
     // ymlDump('stats', stats)
 
     // stats[dateMax]
-    if (dateMax !== db?.latestDate2?.[currency]) { // 如果有更新才發送
+    if (!dateMax) {
+      loggers.log({ currency, message: 'No payment history found, skip report generation' })
+      continue
+    }
+    
+    if (dateMax !== db?.latestDate2?.[currency]) {
       _.set(db, `latestDate2.${currency}`, dateMax)
       const stat2 = stats[dateMax]
       await telegram.sendMessage({
         parse_mode: 'MarkdownV2',
         text: `\\# ${currency} 放貸收益報告
-\`
-日期: ${dateMax.replaceAll('-', '\\-')}
-利息: ${floatFormatDecimal(stat2.interest, 8)} ${currency}
-使用率: ${floatFormatDecimal(stat2.utilization, 2)}%
-  1日年化: ${floatFormatDecimal(stat2.apr1, 2)}%
-  7日年化: ${floatFormatDecimal(stat2.apr7, 2)}%
- 30日年化: ${floatFormatDecimal(stat2.apr30, 2)}%
-365日年化: ${floatFormatDecimal(stat2.apr365, 2)}%
-\``,
+    \`
+    日期: ${dateMax.replaceAll('-', '\\-')}
+    利息: ${floatFormatDecimal(stat2.interest, 8)} ${currency}
+    使用率: ${floatFormatDecimal(stat2.utilization, 2)}%
+      1日年化: ${floatFormatDecimal(stat2.apr1, 2)}%
+      7日年化: ${floatFormatDecimal(stat2.apr7, 2)}%
+     30日年化: ${floatFormatDecimal(stat2.apr30, 2)}%
+    365日年化: ${floatFormatDecimal(stat2.apr365, 2)}%
+    \``,
       }).catch(err => loggers.error(inspect(err)))
     }
 
