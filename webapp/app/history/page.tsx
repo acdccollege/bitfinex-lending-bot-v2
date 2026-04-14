@@ -6,7 +6,7 @@ import ApyCards from '@/components/ApyCards'
 import DateRangePicker from '@/components/DateRangePicker'
 import HistoryTable, { type HistoryRecord } from '@/components/HistoryTable'
 
-const BASE_URL = 'https://aa85192.github.io/bitfinex-lending-bot-v2/funding-statistics-1'
+const BASE_URL = 'https://acdccollege.github.io/bitfinex-lending-bot-v2/funding-statistics-1'
 
 function toDateStr(d: Date) {
   return d.toISOString().slice(0, 10)
